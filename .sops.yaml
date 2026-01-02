@@ -1,0 +1,5 @@
+# SOPS configuration for this repository
+# Applies to YAML files under any system/*/secrets/ directory.
+creation_rules:
+  - path_regex: ^system/.*/secrets/.*\.(yaml|yml)$
+    age: age1zrfnr5t2w5gpxfwcyspksxrqxrna4v79jj7xtvfjkxaz2rtd6gtqsh4lh6
