@@ -34,6 +34,7 @@
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
   sops.secrets.openai_api_key = {};
+  sops.secrets.anthropic_api_key = {};
   # Provision AWS CLI credentials and config from SOPS-managed secrets
   sops.secrets.aws_credentials = {
     # Writes the decrypted credentials to the AWS default location
@@ -88,11 +89,12 @@
     history.append = true;
     history.extended = true;
     history.ignoreDups = true;
-    initContent = ''
-      autoload -U colors && colors
-      PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-      export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
-    '';
+      initContent = ''
+        autoload -U colors && colors
+        PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+        export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
+        export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
+      '';
     shellAliases = {
       ls = "eza -al --icons --color=always --group-directories-first";
       cd = "z";
