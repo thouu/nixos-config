@@ -30,7 +30,20 @@
       thounix = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs system; };
         modules = [
-          { nixpkgs.overlays = [ (final: prev: { codex = pkgsUnstable.codex; }) ]; }
+          {
+            nixpkgs.overlays = [
+              (final: prev:
+                let
+                  unstablePackages = [
+                    "codex"
+                  ];
+                in
+                builtins.listToAttrs (map (name: {
+                  inherit name;
+                  value = pkgsUnstable.${name};
+                }) unstablePackages))
+            ];
+          }
 
           ./nonhome/configuration.nix
           home-manager.nixosModules.home-manager

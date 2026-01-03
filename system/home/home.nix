@@ -15,6 +15,7 @@
     pkgs.sops
     pkgs.awscli2
     pkgs.dig
+    pkgs.claude-code
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
