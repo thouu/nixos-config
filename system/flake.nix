@@ -36,6 +36,7 @@
                 let
                   unstablePackages = [
                     "codex"
+                    "claude-code"
                   ];
                 in
                 builtins.listToAttrs (map (name: {
