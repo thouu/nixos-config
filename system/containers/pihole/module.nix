@@ -41,8 +41,5 @@ with lib;
       "d ${config.services.pihole.dataDir}/etc-pihole 0755 lcd lcd"
       "d ${config.services.pihole.dataDir}/etc-dnsmasq.d 0755 lcd lcd"
     ];
-
-    networking.firewall.allowedTCPPorts = mkIf config.networking.firewall.enable [ 53 62753 ];
-    networking.firewall.allowedUDPPorts = mkIf config.networking.firewall.enable [ 53 ];
   };
 }
