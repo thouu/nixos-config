@@ -120,12 +120,6 @@
     setSocketVariable = true;
   };
 
-  services.pihole = {
-    enable = true;
-    password = "changeme";
-    dataDir = "/home/lcd/container-data/pihole";
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
