@@ -120,6 +120,14 @@
     setSocketVariable = true;
   };
 
+  sops.secrets.pihole_password = {};
+
+  services.pihole = {
+    enable = true;
+    password = builtins.readFile config.sops.secrets.pihole_password.path;
+    dataDir = "/home/lcd/container-data/pihole";
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
