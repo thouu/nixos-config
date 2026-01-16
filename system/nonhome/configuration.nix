@@ -120,11 +120,9 @@
     setSocketVariable = true;
   };
 
-  sops.secrets.pihole_password = {};
-
   services.pihole = {
     enable = true;
-    password = builtins.readFile config.sops.secrets.pihole_password.path;
+    password = "changeme";
     dataDir = "/home/lcd/container-data/pihole";
   };
 

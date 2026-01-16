@@ -20,7 +20,7 @@ with lib;
     virtualisation.oci-containers.containers.pihole = {
       image = "pihole/pihole:latest";
       ports = [
-        "80:80/tcp"
+        "73927:80/tcp"
         "53:53/tcp"
         "53:53/udp"
       ];
@@ -42,7 +42,7 @@ with lib;
       "d ${config.services.pihole.dataDir}/etc-dnsmasq.d 0755 lcd lcd"
     ];
 
-    networking.firewall.allowedTCPPorts = mkIf config.networking.firewall.enable [ 53 80 ];
+    networking.firewall.allowedTCPPorts = mkIf config.networking.firewall.enable [ 53 73927 ];
     networking.firewall.allowedUDPPorts = mkIf config.networking.firewall.enable [ 53 ];
   };
 }
