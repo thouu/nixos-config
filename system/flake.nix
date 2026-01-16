@@ -1,4 +1,4 @@
-# this is stolen from this video at 1:01 https://youtu.be/rEovNpg7J0M?si=7FkCOZOj3apLA0Xd
+# this is partly stolen from this video at 1:01 https://youtu.be/rEovNpg7J0M?si=7FkCOZOj3apLA0Xd
 
 {
   description = "nixos-tweed system";
@@ -7,14 +7,17 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
 
+    pihole.url = "path:./containers/pihole";
+    pihole.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, sops-nix, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, sops-nix, pihole, home-manager, ... }@inputs:
 
-  let 
+  let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -24,7 +27,7 @@
       inherit system;
       config.allowUnfree = true;
     };
-  in 
+  in
   {
     nixosConfigurations = {
       thounix = nixpkgs.lib.nixosSystem {
@@ -47,6 +50,7 @@
           }
 
           ./nonhome/configuration.nix
+          pihole.nixosModules.default
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           { home-manager.useGlobalPkgs = true;
