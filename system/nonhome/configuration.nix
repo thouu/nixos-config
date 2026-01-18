@@ -117,6 +117,10 @@
 
   virtualisation.oci-containers.backend = "docker";
 
+  # import the home-manager sops to be system-wide for containers
+  sops.defaultSopsFile = ../home/secrets/secrets.yaml;
+  sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -1,19 +1,32 @@
-{ ... }:
+{ config, ... }:
 {
+  sops.secrets.pihole_env = {
+    sopsFile = ../home/secrets/secrets.yaml;
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /home/lcd/containers/pihole/etc-pihole 0755 lcd users -"
+    "d /home/lcd/containers/pihole/etc-dnsmasq.d 0755 lcd users -"
+  ];
+
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";
     ports = [
       "53:53/tcp"
       "53:53/udp"
-      "8053:80/tcp"  # web UI - using 8053 to avoid conflicts
+      "8053:80/tcp"
     ];
     volumes = [
-      "/var/lib/pihole/etc-pihole:/etc/pihole"
-      "/var/lib/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+      "/home/lcd/containers/pihole/etc-pihole:/etc/pihole"
+      "/home/lcd/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+    ];
+    environmentFiles = [
+      config.sops.secrets.pihole_env.path
     ];
     environment = {
       TZ = "America/Los_Angeles";
-      WEBPASSWORD = "changeme";  # swap this for sops
+      PIHOLE_UID = "1000";
+      PIHOLE_GID = "1000";
     };
   };
 }
