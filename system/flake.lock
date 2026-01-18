@@ -69,28 +69,11 @@
         "type": "github"
       }
     },
-    "pihole": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./containers/pihole",
-        "type": "path"
-      },
-      "original": {
-        "path": "./containers/pihole",
-        "type": "path"
-      },
-      "parent": []
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "pihole": "pihole",
         "sops-nix": "sops-nix"
       }
     },

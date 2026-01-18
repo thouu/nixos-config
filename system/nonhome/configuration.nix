@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.home-manager
+      # containers
+      ../containers/pihole.nix
     ];
 
   # Bootloader.
@@ -113,12 +115,7 @@
     persist = true;
   }];
 
-  virtualisation.docker.enable = true;
-
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  virtualisation.oci-containers.backend = "docker";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
