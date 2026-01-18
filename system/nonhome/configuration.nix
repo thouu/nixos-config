@@ -97,15 +97,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.uptime-kuma = {
-    enable = true;
-    settings = {
-      HOST = "127.0.0.1";
-      PORT = "3001";
-      # DATA_DIR defaults to /var/lib/uptime-kuma via the module
-    };
-  };
-
   security.doas.enable = true;
   security.sudo.enable = false;
 
