@@ -15,6 +15,7 @@
 
     # containers
     ../../containers/pihole.nix
+    ../../containers/homarr.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
