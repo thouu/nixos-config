@@ -10,12 +10,10 @@
     pkgs.eza
     pkgs.fastfetch
     pkgs.tree
-    pkgs.codex
     pkgs.tealdeer
     pkgs.sops
     pkgs.awscli2
     pkgs.dig
-    pkgs.claude-code
     pkgs.fzf
     pkgs.ripgrep
   ];
