@@ -86,8 +86,8 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     autosuggestion.highlight = "fg=#8d8f9e";
-    history.size = 99999;
-    history.save = 99999;
+    history.size = 999999;
+    history.save = 9223372036854775807;
     history.append = true;
     history.extended = true;
     history.ignoreDups = true;
