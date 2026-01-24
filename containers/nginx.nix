@@ -6,7 +6,7 @@
     "d /home/lcd/containers/nginx/var-www 0755 lcd users -"
   ];
 
-  virtualisation.oci-containers.containers.pihole = {
+  virtualisation.oci-containers.containers.nginx = {
     image = "nginx/nginx:latest";
     ports = [
       "80:80/tcp"
