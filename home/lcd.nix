@@ -74,7 +74,7 @@
         };
       };
       safe = {
-        directory = "/home/lcd/.config/nixos-tweed";
+        directory = "/home/lcd/.config/nixos-config";
       };
     };
   };
