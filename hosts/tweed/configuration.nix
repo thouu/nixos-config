@@ -16,6 +16,7 @@
     # containers
     ../../containers/pihole.nix
     ../../containers/homarr.nix
+    ../../containers/nginx.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
