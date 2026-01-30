@@ -26,9 +26,9 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh {
+  services.openssh = {
     enable = true;
-    settings {
+    settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
