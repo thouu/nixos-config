@@ -10,7 +10,6 @@
     ./hardware-configuration.nix
 
     ../../modules/common.nix
-    ../../modules/server.nix
     ../../modules/netbird.nix
 
     inputs.home-manager.nixosModules.home-manager

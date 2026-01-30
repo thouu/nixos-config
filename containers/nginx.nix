@@ -7,14 +7,14 @@
   ];
 
   virtualisation.oci-containers.containers.nginx = {
-    image = "nginx/nginx:latest";
+    image = "nginx";
     ports = [
       "80:80/tcp"
       "443:443/tcp"
     ];
     volumes = [
       "/home/lcd/containers/nginx/etc-nginx:/etc/nginx"
-      "/home/lcd/containers/nginx/var-www:/var/www"
+      "/home/lcd/containers/nginx/sites:/sites"
     ];
   };
 }

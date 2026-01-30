@@ -49,6 +49,9 @@
   # allow zsh usage
   programs.zsh.enable = true;
 
+  networking.networkmanager.enable = true;
+  virtualisation.oci-containers.backend = "docker";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lcd = {
     isNormalUser = true;

@@ -13,6 +13,10 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  # moved from modules/server.nix
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/216e94d7-4c3e-45e1-a90e-68c64ec25fb1";
       fsType = "ext4";
