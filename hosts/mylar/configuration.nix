@@ -27,6 +27,14 @@
     users.lcd = import ../../home/lcd.nix;
   };
 
+  services.fail2ban = {
+    enable = true;
+  };
+
+  services.openssh = {
+    ports = [ 44704 ];
+  };
+
   # import the home-manager sops to be system-wide for containers
   sops.defaultSopsFile = ../../home/secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
