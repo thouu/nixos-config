@@ -11,8 +11,6 @@
 
     ../../modules/common.nix
     ../../modules/netbird.nix
-
-    inputs.home-manager.nixosModules.home-manager
   ];
 
   networking.hostName = "mylar"; # Define your hostname.
