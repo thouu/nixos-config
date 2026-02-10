@@ -23,6 +23,7 @@
       netbird up \
       --setup-key "$SETUP_KEY" \
       --enable-rosenpass \
+      --allow-server-ssh \
       --enable-ssh-local-port-forwarding \
       --enable-ssh-remote-port-forwarding \
     '';
