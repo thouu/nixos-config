@@ -7,6 +7,7 @@
   };
 
   services.netbird.enable = true;
+  systemd.services.netbird.path = [ pkgs.shadow ];
 
   systemd.services.netbird-setup = {
     description = "NetBird initial setup";
