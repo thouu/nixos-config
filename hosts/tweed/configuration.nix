@@ -15,7 +15,7 @@
     # containers
     ../../containers/pihole.nix
     ../../containers/homarr.nix
-    ../../containers/nginx.nix
+    ../../containers/nginx-tweed.nix
   ];
 
   networking.hostName = "tweed"; # Define your hostname.
