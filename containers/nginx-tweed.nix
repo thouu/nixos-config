@@ -27,7 +27,7 @@ let
       types_hash_max_size 2048;
 
       upstream homarr {
-        server 10.0.0.115:7575;
+        server 172.17.0.1:7575;
       }
 
       server {
