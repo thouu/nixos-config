@@ -17,6 +17,8 @@
     pkgs.fzf
     pkgs.ripgrep
     pkgs.zed-editor
+    pkgs.claude-code
+    pkgs.codex
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
