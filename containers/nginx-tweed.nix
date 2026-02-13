@@ -13,6 +13,7 @@ let
     http {
       include /etc/nginx/mime.types;
       default_type application/octet-stream;
+      resolver 127.0.0.11 ipv6=off valid=30s;
 
       log_format main '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -27,7 +28,8 @@ let
       types_hash_max_size 2048;
 
       upstream homarr {
-        server 172.17.0.1:7575;
+        zone homarr 64k;
+        server homarr:7575 resolve;
       }
 
       server {
@@ -58,6 +60,10 @@ in
 
   virtualisation.oci-containers.containers.nginx = {
     image = "nginx";
+    dependsOn = [ "homarr" ];
+    extraOptions = [
+      "--network=homelab"
+    ];
     ports = [
       "80:80/tcp"
       "443:443/tcp"

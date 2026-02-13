@@ -38,6 +38,25 @@
   sops.defaultSopsFile = ../../home/secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
 
+  # i need to add this to make sure nginx can point to homarr
+  systemd.services.docker-network-homelab = {
+    description = "make homelab docker network";
+    after = [ "docker.service" ];
+    wants = [ "docker.service" ];
+    before = [ "docker-homarr.service" "docker-nginx.service" ];
+    requiredBy = [ "docker-homarr.service" "docker-nginx.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    path = [ pkgs.docker ];
+    script = ''
+      if ! docker network inspect homelab >/dev/null 2>&1; then
+        docker network create homelab >/dev/null
+      fi
+    '';
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
