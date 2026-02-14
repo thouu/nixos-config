@@ -29,6 +29,7 @@
         unstablePackages = [
           "codex"
           "claude-code"
+          "opencode"
         ];
         # i have to add netbird here because ssh isn't enabled otherwise
         # netbird on nixpkgs-unstable is >1yr old somehow
