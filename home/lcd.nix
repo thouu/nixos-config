@@ -89,7 +89,7 @@
     autosuggestion.enable = true;
     autosuggestion.highlight = "fg=#8d8f9e";
     history.size = 999999;
-    history.save = 9223372036854775807;
+    history.save = 9999999999;
     history.append = true;
     history.extended = true;
     history.ignoreDups = true;
