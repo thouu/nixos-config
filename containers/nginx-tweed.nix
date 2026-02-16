@@ -36,6 +36,16 @@ let
         listen 80;
         server_name homarr.thou.sh;
 
+        return 301 https://$host$request_uri;
+      }
+
+      server {
+        listen 443 ssl;
+        server_name homarr.thou.sh;
+
+        ssl_certificate /etc/ssl/acme/homarr.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/homarr.thou.sh/key.pem;
+
         location / {
           proxy_pass http://homarr;
           proxy_set_header Host $host;
@@ -72,6 +82,7 @@ in
       "/etc/nginx-tweed/nginx.conf:/etc/nginx/nginx.conf:ro"
       "/home/lcd/containers/nginx-tweed/logs:/var/log/nginx"
       "/home/lcd/containers/nginx-tweed/sites:/sites"
+      "/var/lib/acme/homarr.thou.sh:/etc/ssl/acme/homarr.thou.sh:ro"
     ];
   };
 }

@@ -38,6 +38,22 @@
   sops.defaultSopsFile = ../../home/secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
 
+  sops.secrets.acme_cloudflare_env = {
+    owner = "acme";
+    group = "acme";
+    mode = "0400";
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "nothou@proton.me";
+    certs."homarr.thou.sh" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
+  };
+
   # i need to add this to make sure nginx can point to homarr
   systemd.services.docker-network-homelab = {
     description = "make homelab docker network";
