@@ -21,7 +21,7 @@ let
         ssl_certificate_key /etc/ssl/acme/homarr.thou.sh/key.pem;
 
         location / {
-          proxy_pass http://10.0.0.115:7575;
+          proxy_pass http://homarr:7575;
         }
       }
 
@@ -33,7 +33,7 @@ let
         ssl_certificate_key /etc/ssl/acme/pihole.thou.sh/key.pem;
 
         location / {
-          proxy_pass http://10.0.0.115:8053;
+          proxy_pass http://pihole:80;
         }
       }
     }
