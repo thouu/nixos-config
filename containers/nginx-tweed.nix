@@ -8,7 +8,7 @@ let
     http {
       server {
         listen 80;
-        server_name homarr.thou.sh;
+        server_name homarr.thou.sh pihole.thou.sh;
 
         return 301 https://$host$request_uri;
       }
@@ -22,6 +22,18 @@ let
 
         location / {
           proxy_pass http://10.0.0.115:7575;
+        }
+      }
+
+      server {
+        listen 443 ssl;
+        server_name pihole.thou.sh;
+
+        ssl_certificate /etc/ssl/acme/pihole.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/pihole.thou.sh/key.pem;
+
+        location / {
+          proxy_pass http://10.0.0.115:8053;
         }
       }
     }
@@ -51,6 +63,7 @@ in
       "/home/lcd/containers/nginx-tweed/logs:/var/log/nginx"
       "/home/lcd/containers/nginx-tweed/sites:/sites"
       "/var/lib/acme/homarr.thou.sh:/etc/ssl/acme/homarr.thou.sh:ro"
+      "/var/lib/acme/pihole.thou.sh:/etc/ssl/acme/pihole.thou.sh:ro"
     ];
   };
 }

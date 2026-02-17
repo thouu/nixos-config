@@ -52,6 +52,11 @@
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
     };
+    certs."pihole.thou.sh" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
   };
 
   # i need to add this to make sure nginx can point to homarr
