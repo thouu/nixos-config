@@ -11,6 +11,9 @@
 
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:latest";
+    extraOptions = [
+      "--network=homelab"
+    ];
     ports = [
       "53:53/tcp"
       "53:53/udp"
