@@ -23,7 +23,6 @@
       SETUP_KEY=$(cat ${config.sops.secrets.netbird_setup_key.path} | tr -d '\n')
       netbird up \
       --setup-key "$SETUP_KEY" \
-      --enable-rosenpass \
       --allow-server-ssh \
       --enable-ssh-local-port-forwarding \
       --enable-ssh-remote-port-forwarding \
