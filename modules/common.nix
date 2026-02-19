@@ -3,6 +3,8 @@
 {
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
 
+  nix.settings.download-buffer-size = 134217728;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
