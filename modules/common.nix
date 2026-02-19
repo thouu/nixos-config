@@ -60,6 +60,33 @@
   networking.networkmanager.enable = true;
   virtualisation.oci-containers.backend = "docker";
 
+  systemd.timers."thou.sh-pull" = {
+    wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "10m";
+        OnUnitActiveSec = "10m";
+        Unit = "thou.sh-pull.service";
+      };
+  };
+
+  systemd.services."thou.sh-pull" = {
+    # make sure git is available
+    path = [ pkgs.git ];
+
+    script = ''
+        export SITE_DIR="/home/lcd/containers/nginx-${config.networking.hostName}/sites/thou.sh"
+        if [ ! -d "$SITE_DIR/.git" ]; then
+            git clone https://github.com/thouu/thou.sh.git "$SITE_DIR"
+        else
+            git -C "$SITE_DIR" pull
+        fi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "lcd";
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lcd = {
     isNormalUser = true;
