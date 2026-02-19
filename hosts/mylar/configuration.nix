@@ -39,6 +39,11 @@
   sops.defaultSopsFile = ../../home/secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
 
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 4096;
+  } ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
