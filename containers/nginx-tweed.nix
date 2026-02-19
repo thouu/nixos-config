@@ -36,6 +36,18 @@ let
           proxy_pass http://pihole:80;
         }
       }
+
+      server {
+        listen 80;
+        server_name thou.sh www.thou.sh;
+
+        root /sites/thou.sh;
+        index index.html;
+
+        location / {
+          try_files $uri $uri/ =404;
+        }
+      }
     }
   '';
 in
