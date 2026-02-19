@@ -42,7 +42,7 @@ in
 {
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/nginx-tweed/etc-nginx 0755 lcd users -"
-    "d /home/lcd/containers/nginx-tweed/var-www 0755 lcd users -"
+    "d /home/lcd/containers/nginx-tweed/sites 0755 lcd users -"
     "d /home/lcd/containers/nginx-tweed/logs 0755 lcd users -"
   ];
 
