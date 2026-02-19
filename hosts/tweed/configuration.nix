@@ -21,6 +21,9 @@
 
   networking.hostName = "tweed"; # Define your hostname.
 
+  # im gonna see if this fixes connecting to netalertx
+  networking.firewall.allowedTCPPorts = [ 20211 20214 ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -54,6 +57,11 @@
       reloadServices = [ "docker-nginx.service" ];
     };
     certs."pihole.thou.sh" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
+    certs."netalertx.thou.sh" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
