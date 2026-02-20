@@ -6,6 +6,8 @@ let
     }
 
     http {
+      include /etc/nginx/mime.types; # this needs to be here otherwise css & js wont work
+
       server {
         listen 80;
         server_name homarr.thou.sh pihole.thou.sh netalertx.thou.sh;
