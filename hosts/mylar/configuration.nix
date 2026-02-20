@@ -11,9 +11,14 @@
 
     ../../modules/common.nix
     ../../modules/netbird.nix
+
+    # containers
+    ../../containers/nginx-mylar.nix
   ];
 
   networking.hostName = "mylar"; # Define your hostname.
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   environment.systemPackages = with pkgs; [
     jdk21_headless
@@ -38,6 +43,22 @@
   # import the home-manager sops to be system-wide for containers
   sops.defaultSopsFile = ../../home/secrets/secrets.yaml;
   sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
+
+  sops.secrets.acme_cloudflare_env = {
+    owner = "acme";
+    group = "acme";
+    mode = "0400";
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "nothou@proton.me";
+    certs."thou.sh" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
+  };
 
   swapDevices = [ {
     device = "/var/lib/swapfile";
