@@ -20,6 +20,7 @@
     environment = {
       PORT = "20211";
       APP_CONF_OVERRIDE = ''{"GRAPHQL_PORT":"20214"}'';
+      LOADED_PLUGINS = ["ARPSCAN", "AVAHISCAN", "DIGSCAN", "NBTSCAN", "NSLOOKUP"];
     };
   };
 }
