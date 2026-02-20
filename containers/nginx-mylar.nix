@@ -48,9 +48,6 @@ in
 
   virtualisation.oci-containers.containers.nginx = {
     image = "nginx";
-    extraOptions = [
-      "--network=host"
-    ];
     ports = [
       "80:80/tcp"
       "443:443/tcp"
