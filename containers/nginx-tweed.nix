@@ -21,6 +21,7 @@ let
         ssl_certificate_key /etc/ssl/acme/homarr.thou.sh/key.pem;
 
         location / {
+          proxy_set_header Host $host;
           proxy_pass http://homarr:7575;
         }
       }
