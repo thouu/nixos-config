@@ -7,6 +7,11 @@ let
     http {
       include /etc/nginx/mime.types; # this needs to be here otherwise css & js wont work
 
+      types {
+        text/css css;
+        application/javascript js;
+      }
+
       upstream thou_site {
         server 100.126.102.20:80;
         server 127.0.0.1:8080 backup;
