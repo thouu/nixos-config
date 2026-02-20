@@ -20,6 +20,7 @@
     pkgs.claude-code
     pkgs.codex
     pkgs.opencode
+    pkgs.chafa
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
