@@ -22,6 +22,7 @@ let
 
         location / {
           proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-Host $host;
           proxy_pass http://homarr:7575;
         }
       }
