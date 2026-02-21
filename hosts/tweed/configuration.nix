@@ -69,7 +69,7 @@
   };
 
   # i need to add this to make sure nginx can point to homarr
-  systemd.services.docker-network-homelab = {
+  systemd.services.homelab-docker-network = {
     description = "make homelab docker network";
     after = [ "docker.service" ];
     wants = [ "docker.service" ];
