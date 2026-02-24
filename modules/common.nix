@@ -41,11 +41,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     btop
     git
     tmux
+    python3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -62,27 +63,19 @@
   networking.networkmanager.enable = true;
   virtualisation.oci-containers.backend = "docker";
 
-  systemd.timers."thou.sh-pull" = {
+  systemd.timers."site-pull" = {
     wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "10m";
         OnUnitActiveSec = "10m";
-        Unit = "thou.sh-pull.service";
+        Unit = "site-pull.service";
       };
   };
 
-  systemd.services."thou.sh-pull" = {
-    # make sure git is available
-    path = [ pkgs.git ];
-
-    script = ''
-        export SITE_DIR="/home/lcd/containers/nginx-${config.networking.hostName}/sites/thou.sh"
-        if [ ! -d "$SITE_DIR/.git" ]; then
-            git clone https://github.com/thouu/thou.sh.git "$SITE_DIR"
-        else
-            git -C "$SITE_DIR" pull
-        fi
-    '';
+  systemd.services."site-pull" = {
+    # make sure git & python is available
+    path = [ pkgs.git pkgs.python3 ];
+    script = ''python3 /home/lcd/.config/nixos-config/scripts/site-pull.py'';
     serviceConfig = {
       Type = "oneshot";
       User = "lcd";
