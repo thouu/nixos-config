@@ -48,7 +48,7 @@ let
 
       upstream swagcat_site {
         server 100.126.102.20:80;
-        server 127.0.0.1:8080 backup;
+        server 127.0.0.1:8081 backup;
       }
 
       server {
@@ -71,7 +71,7 @@ let
       }
 
       server {
-        listen 8080;
+        listen 8081;
         root /sites/swagc.at;
         index index.html index.htm;
       }
