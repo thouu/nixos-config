@@ -69,6 +69,18 @@ let
           try_files $uri $uri/ =404;
         }
       }
+
+      server {
+        listen 80;
+        server_name swagc.at www.swagc.at;
+
+        root /sites/swagc.at;
+        index index.html;
+
+        location / {
+          try_files $uri $uri/ =404;
+        }
+      }
     }
   '';
 in

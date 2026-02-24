@@ -58,6 +58,11 @@
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
     };
+    certs."swagc.at" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
   };
 
   swapDevices = [ {

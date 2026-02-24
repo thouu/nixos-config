@@ -12,6 +12,8 @@ let
         application/javascript js;
       }
 
+      # thou.sh
+
       upstream thou_site {
         server 100.126.102.20:80;
         server 127.0.0.1:8080 backup;
@@ -41,6 +43,38 @@ let
         root /sites/thou.sh;
         index index.html index.htm;
       }
+
+      # swagc.at
+
+      upstream swagcat_site {
+        server 100.126.102.20:80;
+        server 127.0.0.1:8080 backup;
+      }
+
+      server {
+        listen 80;
+        server_name swagc.at www.swagc.at;
+        return 301 https://$host$request_uri;
+      }
+
+      server {
+        listen 443 ssl;
+        server_name swagc.at www.swagc.at;
+
+        ssl_certificate /etc/ssl/acme/swagc.at/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/swagc.at/key.pem;
+
+        location / {
+          proxy_pass http://swagcat_site;
+          proxy_set_header Host $host;
+        }
+      }
+
+      server {
+        listen 8080;
+        root /sites/swagc.at;
+        index index.html index.htm;
+      }
     }
   '';
 in
@@ -64,6 +98,7 @@ in
       "/home/lcd/containers/nginx-mylar/logs:/var/log/nginx"
       "/home/lcd/containers/nginx-mylar/sites:/sites"
       "/var/lib/acme/thou.sh:/etc/ssl/acme/thou.sh:ro"
+      "/var/lib/acme/swagc.at:/etc/ssl/acme/swagc.at:ro"
     ];
   };
 }
