@@ -48,6 +48,18 @@ let
 
       server {
         listen 443 ssl;
+        server_name owui.thou.sh;
+
+        ssl_certificate /etc/ssl/acme/owui.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
+
+        location / {
+          proxy_pass http://openwebui:80;
+        }
+      }
+
+      server {
+        listen 443 ssl;
         server_name netalertx.thou.sh;
 
         ssl_certificate /etc/ssl/acme/netalertx.thou.sh/fullchain.pem;
