@@ -16,6 +16,7 @@
     ../../containers/pihole.nix
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
+    ../../containers/openwebui.nix
     ../../containers/netalertx.nix
   ];
 
