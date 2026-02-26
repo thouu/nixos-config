@@ -22,8 +22,7 @@
 
   networking.hostName = "tweed"; # Define your hostname.
 
-  # im gonna see if this fixes connecting to netalertx
-  networking.firewall.allowedTCPPorts = [ 20211 20214 ];
+  networking.firewall.allowedTCPPorts = [ 20211 20214 52320 ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
