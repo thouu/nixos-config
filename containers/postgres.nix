@@ -4,6 +4,9 @@
     sopsFile = ../home/secrets/secrets.yaml;
   };
 
+  sops.templates."postgres.env".content =
+    "POSTGRES_PASSWORD=${config.sops.placeholder.POSTGRES_PASSWORD}\n";
+
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/postgres/postgres-data 0755 lcd users -"
   ];
@@ -19,8 +22,8 @@
     volumes = [
       "/home/lcd/containers/postgres/postgres-data:/var/lib/postgresql/data"
     ];
-    environment = {
-      POSTGRES_PASSWORD_FILE = config.sops.secrets.POSTGRES_PASSWORD.path;
-    };
+    environmentFiles = [
+      config.sops.templates."postgres.env".path
+    ];
   };
 }
