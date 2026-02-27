@@ -26,8 +26,5 @@
     environmentFiles = [
       config.sops.templates."homarr.env".path
     ];
-    environment = {
-
-    };
   };
 }
