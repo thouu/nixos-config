@@ -73,25 +73,6 @@
     };
   };
 
-  # i need to add this to make sure nginx can point to homarr
-  systemd.services.homelab-docker-network = {
-    description = "make homelab docker network";
-    after = [ "docker.service" ];
-    wants = [ "docker.service" ];
-    before = [ "docker-homarr.service" "docker-nginx.service" ];
-    requiredBy = [ "docker-homarr.service" "docker-nginx.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    path = [ pkgs.docker ];
-    script = ''
-      if ! docker network inspect homelab >/dev/null 2>&1; then
-        docker network create homelab >/dev/null
-      fi
-    '';
-  };
-
   swapDevices = [ {
     device = "/var/lib/swapfile";
     size = 12288;
