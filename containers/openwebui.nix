@@ -17,5 +17,8 @@
       "/var/run/docker.sock:/var/run/docker.sock"
       "/home/lcd/containers/openwebui:/app/backend/data"
     ];
+    environment = {
+      PORT = "52320";
+    };
   };
 }

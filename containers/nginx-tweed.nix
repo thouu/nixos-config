@@ -54,7 +54,7 @@ let
         ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
 
         location / {
-          proxy_pass http://openwebui:80;
+          proxy_pass http://openwebui:52320;
         }
       }
 
@@ -122,6 +122,7 @@ in
       "/var/lib/acme/homarr.thou.sh:/etc/ssl/acme/homarr.thou.sh:ro"
       "/var/lib/acme/pihole.thou.sh:/etc/ssl/acme/pihole.thou.sh:ro"
       "/var/lib/acme/netalertx.thou.sh:/etc/ssl/acme/netalertx.thou.sh:ro"
+      "/var/lib/acme/owui.thou.sh:/etc/ssl/acme/owui.thou.sh:ro"
     ];
   };
 }
