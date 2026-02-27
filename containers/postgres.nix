@@ -25,5 +25,9 @@
     environmentFiles = [
       config.sops.templates."postgres.env".path
     ];
+    environment = {
+      POSTGRES_DB = "openwebui";
+      POSTGRES_USER = "openwebui";
+    };
   };
 }
