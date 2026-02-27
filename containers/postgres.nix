@@ -9,7 +9,7 @@
   ];
 
   virtualisation.oci-containers.containers.postgres = {
-    image = "postgres/postgres:18-trixie";
+    image = "postgres:18-trixie";
     extraOptions = [
       "--network=homelab"
     ];
