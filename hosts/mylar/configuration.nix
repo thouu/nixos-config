@@ -14,6 +14,7 @@
 
     # containers
     ../../containers/nginx-mylar.nix
+    ../../containers/postgres.nix
   ];
 
   networking.hostName = "mylar"; # Define your hostname.
