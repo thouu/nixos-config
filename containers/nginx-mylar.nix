@@ -12,6 +12,9 @@ let
         application/javascript js;
       }
 
+      # rate limiting
+      limit_req_zone $binary_remote_addr zone=general:10m rate=30r/s;
+
       # thou.sh
 
       upstream thou_site {
@@ -31,6 +34,9 @@ let
 
         ssl_certificate /etc/ssl/acme/thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/thou.sh/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
 
         location / {
           proxy_pass http://thou_site;
@@ -63,6 +69,9 @@ let
 
         ssl_certificate /etc/ssl/acme/swagc.at/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/swagc.at/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
 
         location / {
           proxy_pass http://swagcat_site;

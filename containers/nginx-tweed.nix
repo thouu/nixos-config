@@ -13,6 +13,9 @@ let
         application/javascript js;
       }
 
+      # rate limiting
+      limit_req_zone $binary_remote_addr zone=general:10m rate=30r/s;
+
       server {
         listen 80;
         server_name homarr.thou.sh pihole.thou.sh netalertx.thou.sh;
@@ -26,6 +29,9 @@ let
 
         ssl_certificate /etc/ssl/acme/homarr.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/homarr.thou.sh/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
 
         location / {
           proxy_set_header Host $host;
@@ -41,6 +47,9 @@ let
         ssl_certificate /etc/ssl/acme/pihole.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/pihole.thou.sh/key.pem;
 
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
+
         location / {
           proxy_pass http://pihole:80;
         }
@@ -53,6 +62,9 @@ let
         ssl_certificate /etc/ssl/acme/owui.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
 
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
+
         location / {
           proxy_pass http://openwebui:52320;
         }
@@ -64,6 +76,9 @@ let
 
         ssl_certificate /etc/ssl/acme/netalertx.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/netalertx.thou.sh/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
 
         location / {
           proxy_pass http://10.0.0.115:20211;
