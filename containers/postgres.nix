@@ -20,7 +20,7 @@
       "/home/lcd/containers/postgres/postgres-data:/var/lib/postgresql/data"
     ];
     environment = {
-      POSTGRES_PASSWORD_FILE = config.sops.secrets.POSTGRES_PASSWORD.path
+      POSTGRES_PASSWORD_FILE = config.sops.secrets.POSTGRES_PASSWORD.path;
     };
   };
 }
