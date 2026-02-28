@@ -11,10 +11,12 @@ let
 
 in
 {
-
-  sops.secrets.openwebui_db_url = {
+  sops.secrets.POSTGRES_PASSWORD_ENCODED = {
     sopsFile = ../home/secrets/secrets.yaml;
   };
+
+  sops.templates."openwebui.env".content =
+    "DATABASE_URL=postgresql://openwebui:${config.sops.placeholder.POSTGRES_PASSWORD_ENCODED}@${db_host}:5432/openwebui\n";
 
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/openwebui 0755 lcd users -"
@@ -25,7 +27,7 @@ in
     extraOptions = [ "--network=homelab" ];
     ports = [ "${host_port}:52320" ];
     environmentFiles = [
-      config.sops.secrets.openwebui_db_url.path
+      config.sops.templates."openwebui.env".path
     ];
     environment = {
       PORT = "52320";
