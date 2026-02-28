@@ -15,6 +15,36 @@ let
       # rate limiting
       limit_req_zone $binary_remote_addr zone=general:10m rate=30r/s;
 
+      # openwebui
+
+      upstream openwebui {
+        server 100.126.102.20:52320;
+        server 127.0.0.1:52321 backup;
+      }
+
+      server {
+        listen 443 ssl;
+        server_name owui.thou.sh;
+        ssl_certificate /etc/ssl/acme/owui.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
+
+        location / {
+          proxy_pass http://openwebui;
+          proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+
+          # failover
+          proxy_connect_timeout 5s;
+          proxy_read_timeout 60s;
+          proxy_send_timeout 60s;
+        }
+      }
+
       # thou.sh
 
       upstream thou_site {
