@@ -15,6 +15,7 @@
     # containers
     ../../containers/nginx-mylar.nix
     ../../containers/postgres.nix
+    ../../containers/openwebui.nix
   ];
 
   networking.hostName = "mylar"; # Define your hostname.
