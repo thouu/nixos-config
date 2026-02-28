@@ -6,7 +6,7 @@ let
   is_mylar = config.networking.hostName == "mylar";
 
   db_host = if is_mylar then "postgres" else mylar_netbird_ip;
-  database_url = "postgresql://openwebui:${dbPassword}@${db_host}:5432/openwebui";
+  database_url = "postgresql://openwebui:${db_password}@${db_host}:5432/openwebui";
 
   host_port = if is_mylar then "52321" else "52320";
 
