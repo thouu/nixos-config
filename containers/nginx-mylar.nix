@@ -1,5 +1,7 @@
 { config, ... }:
 let
+  tweed_netbird_ip = "100.126.102.20";
+
   nginxConf = ''
     events {
       worker_connections 1024;
@@ -18,7 +20,7 @@ let
       # openwebui
 
       upstream openwebui {
-        server 100.126.102.20:52320;
+        server ${tweed_netbird_ip}:52320;
         server 127.0.0.1:52321 backup;
       }
 
@@ -48,7 +50,7 @@ let
       # thou.sh
 
       upstream thou_site {
-        server 100.126.102.20:80;
+        server ${tweed_netbird_ip}:80;
         server 127.0.0.1:8080 backup;
       }
 
@@ -83,7 +85,7 @@ let
       # swagc.at
 
       upstream swagcat_site {
-        server 100.126.102.20:80;
+        server ${tweed_netbird_ip}:80;
         server 127.0.0.1:8081 backup;
       }
 
