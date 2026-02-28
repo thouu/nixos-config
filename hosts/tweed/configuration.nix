@@ -17,6 +17,7 @@
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
+    ../../containers/openwebui.nix
   ];
 
   networking.hostName = "tweed"; # Define your hostname.
@@ -61,11 +62,6 @@
       reloadServices = [ "docker-nginx.service" ];
     };
     certs."netalertx.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
-    };
-    certs."owui.thou.sh" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
