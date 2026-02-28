@@ -65,7 +65,7 @@
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
     };
-    certs."owui.thou.sh" = {
+    certs."ai.thou.sh" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];

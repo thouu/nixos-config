@@ -26,9 +26,9 @@ let
 
       server {
         listen 443 ssl;
-        server_name owui.thou.sh;
-        ssl_certificate /etc/ssl/acme/owui.thou.sh/fullchain.pem;
-        ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
+        server_name ai.thou.sh;
+        ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/ai.thou.sh/key.pem;
 
         # rate limiting
         limit_req zone=general burst=20 nodelay;
@@ -140,7 +140,7 @@ in
       "/home/lcd/containers/nginx-mylar/sites:/sites"
       "/var/lib/acme/thou.sh:/etc/ssl/acme/thou.sh:ro"
       "/var/lib/acme/swagc.at:/etc/ssl/acme/swagc.at:ro"
-      "/var/lib/acme/owui.thou.sh:/etc/ssl/acme/owui.thou.sh:ro"
+      "/var/lib/acme/ai.thou.sh:/etc/ssl/acme/ai.thou.sh:ro"
     ];
   };
 }

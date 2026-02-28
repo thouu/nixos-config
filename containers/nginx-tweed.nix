@@ -57,10 +57,10 @@ let
 
       server {
         listen 443 ssl;
-        server_name owui.thou.sh;
+        server_name ai.thou.sh;
 
-        ssl_certificate /etc/ssl/acme/owui.thou.sh/fullchain.pem;
-        ssl_certificate_key /etc/ssl/acme/owui.thou.sh/key.pem;
+        ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/ai.thou.sh/key.pem;
 
         # rate limiting
         limit_req zone=general burst=20 nodelay;
@@ -137,7 +137,7 @@ in
       "/var/lib/acme/homarr.thou.sh:/etc/ssl/acme/homarr.thou.sh:ro"
       "/var/lib/acme/pihole.thou.sh:/etc/ssl/acme/pihole.thou.sh:ro"
       "/var/lib/acme/netalertx.thou.sh:/etc/ssl/acme/netalertx.thou.sh:ro"
-      "/var/lib/acme/owui.thou.sh:/etc/ssl/acme/owui.thou.sh:ro"
+      "/var/lib/acme/ai.thou.sh:/etc/ssl/acme/ai.thou.sh:ro"
     ];
   };
 }
