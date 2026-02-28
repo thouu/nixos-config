@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-sops.secrets.openwebui_db_url = {
-  sopsFile = ../home/secrets/secrets.yaml;
-};
-
 let
   mylar_netbird_ip = "100.126.141.19";
 
@@ -16,6 +12,11 @@ let
 
 in
 {
+
+  sops.secrets.openwebui_db_url = {
+    sopsFile = ../home/secrets/secrets.yaml;
+  };
+
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/openwebui 0755 lcd users -"
   ];
