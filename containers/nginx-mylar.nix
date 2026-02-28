@@ -140,6 +140,7 @@ in
       "/home/lcd/containers/nginx-mylar/sites:/sites"
       "/var/lib/acme/thou.sh:/etc/ssl/acme/thou.sh:ro"
       "/var/lib/acme/swagc.at:/etc/ssl/acme/swagc.at:ro"
+      "/var/lib/acme/owui.thou.sh:/etc/ssl/acme/owui.thou.sh:ro"
     ];
   };
 }
