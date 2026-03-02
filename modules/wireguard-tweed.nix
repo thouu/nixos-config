@@ -21,7 +21,7 @@
       {
         # mylar
         publicKey = "6X6tjJ3rF8R4SLUShBkV1njjxbeFlrxGSyZ6UWpTLw0=";
-        endpoint = "wg4b.thou.sh:44019";
+        endpoint = "5.78.153.126:44019";
         allowedIPs = [ "10.100.0.0/24" ];
         persistentKeepalive = 25;
       }
