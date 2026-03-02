@@ -11,6 +11,7 @@
     address = [ "10.100.0.1/24" ];
     listenPort = 44019;
     privateKeyFile = config.sops.secrets.wg_mylar_key.path;
+    table = "off";
 
     peers = [
       {
