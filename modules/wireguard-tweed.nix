@@ -8,7 +8,7 @@
   networking.nat = {
     enable = true;
     internalInterfaces = [ "wg0" ];
-    externalInterface = "ens3";
+    externalInterface = "ens10";
   };
 
   networking.wg-quick.interfaces.wg0 = {
