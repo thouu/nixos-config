@@ -11,6 +11,7 @@
 
     ../../modules/common.nix
     ../../modules/netbird.nix
+    ../../modules/wireguard-mylar.nix
 
     # containers
     ../../containers/nginx-mylar.nix

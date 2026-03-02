@@ -11,6 +11,7 @@
 
     ../../modules/common.nix
     ../../modules/netbird.nix
+    ../../modules/wireguard-tweed.nix
 
     # containers
     ../../containers/pihole.nix
