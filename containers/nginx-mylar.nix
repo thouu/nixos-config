@@ -17,6 +17,16 @@ let
       # rate limiting
       limit_req_zone $binary_remote_addr zone=general:10m rate=30r/s;
 
+      # make non-explicitly defined hostnames drop connections
+      server {
+        listen 80 default_server;
+        listen 443 ssl default_server;
+        ssl_certificate /etc/ssl/acme/thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/thou.sh/key.pem;
+        server_name _;
+        return 444;
+      }
+
       # openwebui
 
       upstream openwebui {
