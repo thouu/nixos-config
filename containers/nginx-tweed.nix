@@ -62,9 +62,6 @@ let
         ssl_certificate /etc/ssl/acme/qbt.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/qbt.thou.sh/key.pem;
 
-        # rate limiting
-        limit_req zone=general burst=20 nodelay;
-
         location / {
           proxy_pass http://gluetun:30025;
           proxy_http_version 1.1;
@@ -72,6 +69,8 @@ let
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
+
+          proxy_buffering off;
         }
       }
 
