@@ -20,6 +20,8 @@
     image = "qmcgaw/gluetun:latest";
     extraOptions = [
       "--network=homelab"
+      "--cap-add=NET_ADMIN"
+      "--device=/dev/net/tun:/dev/net/tun"
     ];
     ports = [
       "30025:30025"
