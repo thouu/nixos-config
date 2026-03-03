@@ -6,9 +6,6 @@
     "d /home/lcd/containers/qbittorrent/torrent-files 0755 lcd users -"
   ];
 
-  networking.firewall.allowedTCPPorts = [ 30025 57964 ];
-  networking.firewall.allowedUDPPorts = [ 57964 ];
-
   virtualisation.oci-containers.containers.qbittorrent = {
     image = "lscr.io/linuxserver/qbittorrent:latest";
     extraOptions = [
