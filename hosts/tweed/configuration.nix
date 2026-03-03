@@ -25,7 +25,7 @@
 
   networking.hostName = "tweed"; # Define your hostname.
 
-  networking.firewall.allowedTCPPorts = [ 20211 20214 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 20211 20214 ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
