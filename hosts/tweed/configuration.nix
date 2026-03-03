@@ -19,6 +19,8 @@
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
     ../../containers/openwebui.nix
+    ../../containers/gluetun.nix
+    ../../containers/qbittorrent.nix
   ];
 
   networking.hostName = "tweed"; # Define your hostname.
