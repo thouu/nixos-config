@@ -34,14 +34,14 @@
         # i have to add netbird here because ssh isn't enabled otherwise
         # netbird on nixpkgs-unstable is >1yr old somehow
         netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: {
-          version = "0.63.0";
+          version = "0.66.1";
           src = prev.fetchFromGitHub {
             owner = "netbirdio";
             repo = "netbird";
-            rev = "v0.63.0";
-            hash = "sha256-hMg7KrD6vkpEEMQButhoVE8crEODUU01Pz+ifdQ10C4=";
+            rev = "v0.66.1";
+            hash = "sha256-n9sfEyS2wHcf2K2GO49l9r9lDs1rv6oC2PCnl4wy75M=";
           };
-          vendorHash = "sha256-b3Wl9jsAdYC91JM/kDo4yIF05hqbivtrcn1aRuZzP3s=";
+          vendorHash = "sha256-zMjbciItpzzCmUoLZy+gEF9etQy2dRmZrRVg4iSC0+o=";
         });
       in
       (builtins.listToAttrs (map (name: {
