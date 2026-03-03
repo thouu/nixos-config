@@ -8,8 +8,8 @@
   };
 
   sops.templates."gluetun.env".content = ''
-    WIREGUARD_PRIVATE_KEY=''${config.sops.placeholder.gluetun_wg_private_key}
-    WIREGUARD_PRESHARED_KEY=''${config.sops.placeholder.gluetun_wg_preshared_key}
+    WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.gluetun_wg_private_key}
+    WIREGUARD_PRESHARED_KEY=${config.sops.placeholder.gluetun_wg_preshared_key}
   '';
 
   systemd.tmpfiles.rules = [
