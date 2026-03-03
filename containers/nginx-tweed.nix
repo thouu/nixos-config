@@ -154,6 +154,7 @@ in
       "/var/lib/acme/homarr.thou.sh:/etc/ssl/acme/homarr.thou.sh:ro"
       "/var/lib/acme/pihole.thou.sh:/etc/ssl/acme/pihole.thou.sh:ro"
       "/var/lib/acme/netalertx.thou.sh:/etc/ssl/acme/netalertx.thou.sh:ro"
+      "/var/lib/acme/qbt.thou.sh:/etc/ssl/acme/qbt.thou.sh:ro"
       "/var/lib/acme/ai.thou.sh:/etc/ssl/acme/ai.thou.sh:ro"
     ];
   };
