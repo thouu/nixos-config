@@ -2,6 +2,8 @@
 {
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/qbittorrent 0755 lcd users -"
+    "d /home/lcd/containers/qbittorrent/config 0755 lcd users -"
+    "d /home/lcd/containers/qbittorrent/torrent-files 0755 lcd users -"
   ];
 
   virtualisation.oci-containers.containers.qbittorrent = {
