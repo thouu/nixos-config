@@ -9,6 +9,7 @@
     extraOptions = [
       "--network=container:gluetun"
     ];
+    dependsOn = [ "gluetun" ];
     volumes = [
       "/home/lcd/containers/qbittorrent/config:/config"
       "/home/lcd/containers/qbittorrent/torrent-files:/torrent-files"
