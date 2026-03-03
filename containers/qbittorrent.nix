@@ -7,7 +7,7 @@
   ];
 
   virtualisation.oci-containers.containers.qbittorrent = {
-    image = "lscr.io/linuxserver/qbittorrent:latest";
+    image = "linuxserver/qbittorrent";
     extraOptions = [
       "--network=container:gluetun"
     ];
