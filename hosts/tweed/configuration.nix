@@ -69,6 +69,11 @@
       credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
       reloadServices = [ "docker-nginx.service" ];
     };
+    certs."qbt.thou.sh" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+      reloadServices = [ "docker-nginx.service" ];
+    };
     # adding this for split horizon dns
     # pihole routes ai.thou.sh to local ip when im on my home network, this lets it use https
     certs."ai.thou.sh" = {

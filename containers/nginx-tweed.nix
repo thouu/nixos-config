@@ -57,6 +57,21 @@ let
 
       server {
         listen 443 ssl;
+        server_name qbt.thou.sh;
+
+        ssl_certificate /etc/ssl/acme/qbt.thou.sh/fullchain.pem;
+        ssl_certificate_key /etc/ssl/acme/qbt.thou.sh/key.pem;
+
+        # rate limiting
+        limit_req zone=general burst=20 nodelay;
+
+        location / {
+          proxy_pass http://qbittorrent:30025;
+        }
+      }
+
+      server {
+        listen 443 ssl;
         server_name ai.thou.sh;
 
         ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
