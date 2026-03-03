@@ -14,8 +14,6 @@
       "/home/lcd/containers/qbittorrent/torrent-files:/torrent-files"
     ];
     environment = {
-      PUID = "568";
-      PGID = "568";
       TZ = "America/Los_Angeles";
       WEBUI_PORT = "30025";
       TORRENTING_PORT = "57964";
