@@ -66,7 +66,7 @@ let
         limit_req zone=general burst=20 nodelay;
 
         location / {
-          proxy_pass http://qbittorrent:30025;
+          proxy_pass http://gluetun:30025;
         }
       }
 
