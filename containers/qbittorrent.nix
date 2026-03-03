@@ -17,6 +17,10 @@
       "/home/lcd/containers/qbittorrent/torrent-files:/torrent-files"
     ];
     environment = {
+      # on nixos default uid is 1000 & default gid is 1000
+      # this ensures lcd's access to torrented files
+      PUID = "1000";
+      PGID = "100";
       TZ = "America/Los_Angeles";
       WEBUI_PORT = "30025";
       TORRENTING_PORT = "57964";
