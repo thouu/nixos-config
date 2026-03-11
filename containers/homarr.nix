@@ -1,11 +1,14 @@
 { config, ... }:
 {
-  sops.secrets.SECRET_ENCRYPTION_KEY = {
-    sopsFile = ../home/secrets/secrets.yaml;
+  sops.defaultSopsFile = ../home/secrets/secrets.yaml;
+
+  sops.secrets = {
+    homarr_encryption_key = {};
   };
 
-  sops.templates."homarr.env".content =
-    "SECRET_ENCRYPTION_KEY=${config.sops.placeholder.SECRET_ENCRYPTION_KEY}\n";
+  sops.templates."homarr.env".content = ''
+    SECRET_ENCRYPTION_KEY=${config.sops.placeholder.homarr_encryption_key}
+  '';
 
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/homarr/appdata 0755 lcd users -"
