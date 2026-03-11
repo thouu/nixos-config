@@ -64,9 +64,9 @@
 
   programs.git = {
     enable = true;
-    user.name = "thou";
-    user.email = "nothou@proton.me";
     settings = {
+      user.name = "thou";
+      user.email = "nothou@proton.me";
       init.defaultBranch = "main";
 
       credential = {
