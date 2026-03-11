@@ -35,23 +35,25 @@
     AWS_PROFILE = "censored";
   };
 
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
-  sops.secrets.openai_api_key = {};
-  sops.secrets.anthropic_api_key = {};
-  # Provision AWS CLI credentials and config from SOPS-managed secrets
-  sops.secrets.aws_credentials = {
-    # Writes the decrypted credentials to the AWS default location
-    path = "${config.home.homeDirectory}/.aws/credentials";
-    mode = "0600";
-  };
-  sops.secrets.aws_config = {
-    path = "${config.home.homeDirectory}/.aws/config";
-    mode = "0600";
-  };
-  sops.secrets.github_credentials = {
-    path = "/home/lcd/.config/git/credentials";
-    mode = "0600";
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
+    secrets = {
+      openai_api_key = {};
+      anthropic_api_key = {};
+      aws_credentials = {
+        path = "${config.home.homeDirectory}/.aws/credentials";
+        mode = "0600";
+      };
+      aws_config = {
+        path = "${config.home.homeDirectory}/.aws/config";
+        mode = "0600";
+      };
+      github_credentials = {
+        path = "/home/lcd/.config/git/credentials";
+        mode = "0600";
+      };
+    };
   };
 
   programs.home-manager.enable = true;
