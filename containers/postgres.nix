@@ -1,11 +1,14 @@
 { config, ... }:
 {
-  sops.secrets.POSTGRES_PASSWORD = {
-    sopsFile = ../home/secrets/secrets.yaml;
+  sops.defaultSopsFile = ../home/secrets/secrets.yaml;
+
+  sops.secrets = {
+    postgres_password = {};
   };
 
-  sops.templates."postgres.env".content =
-    "POSTGRES_PASSWORD=${config.sops.placeholder.POSTGRES_PASSWORD}\n";
+  sops.templates."postgres.env".content = ''
+    POSTGRES_PASSWORD=${config.sops.placeholder.postgres_password}
+  '';
 
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/postgres/postgres-data 0755 lcd users -"
