@@ -90,17 +90,19 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     autosuggestion.highlight = "fg=#8d8f9e";
-    history.size = 999999;
-    history.save = 9999999999;
-    history.append = true;
-    history.extended = true;
-    history.ignoreDups = true;
-      initContent = ''
-        autoload -U colors && colors
-        PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-        export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
-        export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
-      '';
+    history = {
+      size = 999999;
+      save = 9999999999;
+      append = true;
+      extended = true;
+      ignoreDups = true;
+    };
+    initContent = ''
+      autoload -U colors && colors
+      PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+      export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
+      export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
+    '';
     shellAliases = {
       ls = "eza -al --icons --color=always --group-directories-first";
       cd = "z";
