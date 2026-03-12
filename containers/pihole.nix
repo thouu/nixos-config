@@ -1,11 +1,4 @@
 { config, pkgs, ... }:
-
-let
-  netbird_dnsmasq = pkgs.writeText "99-netbird.conf" ''
-    server=/netbird.cloud/100.126.255.254
-  '';
-
-in
 {
   sops.secrets.pihole_env = {
     sopsFile = ../home/secrets/secrets.yaml;
@@ -29,7 +22,6 @@ in
     volumes = [
       "/home/lcd/containers/pihole/etc-pihole:/etc/pihole"
       "/home/lcd/containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
-      "${netbird_dnsmasq}:/etc/dnsmasq.d/99-netbird.conf:ro"
     ];
     environmentFiles = [
       config.sops.secrets.pihole_env.path
