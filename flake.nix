@@ -14,18 +14,12 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, sops-nix, home-manager, ... }@inputs:
 
   let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    pkgsUnstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
     unstableOverlay = final: prev:
       let
+        pkgsUnstable = import nixpkgs-unstable {
+          system = final.system;
+          config.allowUnfree = true;
+        };
         unstablePackages = [
           "codex"
           "claude-code"
@@ -51,7 +45,7 @@
         netbird = netbirdOverride;
       };
 
-    mkHost = hostname: nixpkgs.lib.nixosSystem {
+    mkHost = hostname: system: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs system; };
       modules = [
@@ -71,8 +65,8 @@
   in
   {
     nixosConfigurations = {
-      tweed = mkHost "tweed";
-      mylar = mkHost "mylar";
+      tweed = mkHost "tweed" "x86_64-linux";
+      mylar = mkHost "mylar" "aarch64-linux";
     };
   };
 }
