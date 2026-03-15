@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  mylar_netbird_ip = "100.126.141.19";
+  mylar_netbird_ip = "100.126.231.177";
   is_mylar = config.networking.hostName == "mylar";
   db_host = if is_mylar then "postgres" else mylar_netbird_ip;
   host_port = if is_mylar then "52321" else "52320";
