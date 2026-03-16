@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   systemd.tmpfiles.rules = [
     "d /home/lcd/containers/netalertx/data 0755 lcd users -"

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   sops.secrets.pihole_env = {
     sopsFile = ../home/secrets/secrets.yaml;

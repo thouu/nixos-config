@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   mylar_netbird_ip = "100.126.231.177";

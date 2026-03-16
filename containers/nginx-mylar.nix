@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   tweed_netbird_ip = "100.126.102.20";
 
