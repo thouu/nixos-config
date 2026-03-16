@@ -27,17 +27,13 @@
 
   };
 
-  home.sessionVariables = {
-    EDITOR = "vim";
-    AWS_PROFILE = "censored";
-  };
-
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     age.keyFile = "/home/lcd/.config/sops/age/keys.txt";
     secrets = {
       openai_api_key = {};
       anthropic_api_key = {};
+      aws_profile = {};
       aws_credentials = {
         path = "${config.home.homeDirectory}/.aws/credentials";
         mode = "0600";
@@ -51,6 +47,10 @@
         mode = "0600";
       };
     };
+  };
+
+  home.sessionVariables = {
+    EDITOR = "vim";
   };
 
   programs.home-manager.enable = true;
@@ -99,6 +99,7 @@
       PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
       export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
       export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
+      export AWS_PROFILE = "$(cat ${config.sops.secrets.aws_profile.path})"
     '';
     shellAliases = {
       ls = "eza -al --icons --color=always --group-directories-first";
