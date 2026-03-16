@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -51,37 +51,26 @@
     mode = "0400";
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "nothou@proton.me";
-    certs."homarr.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
+  security.acme =
+    let
+      acmeDomains = [
+        "homarr.thou.sh"
+        "pihole.thou.sh"
+        "netalertx.thou.sh"
+        "qbt.thou.sh"
+        # adding ai.thou.sh for split horizon DNS so it can use HTTPS on the home network
+        "ai.thou.sh"
+      ];
+    in
+    {
+      acceptTerms = true;
+      defaults.email = "nothou@proton.me";
+      certs = lib.genAttrs acmeDomains (_: {
+        dnsProvider = "cloudflare";
+        environmentFile = config.sops.secrets.acme_cloudflare_env.path;
+        reloadServices = [ "docker-nginx.service" ];
+      });
     };
-    certs."pihole.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
-    };
-    certs."netalertx.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
-    };
-    certs."qbt.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
-    };
-    # adding this for split horizon dns
-    # pihole routes ai.thou.sh to local ip when im on my home network, this lets it use https
-    certs."ai.thou.sh" = {
-      dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-      reloadServices = [ "docker-nginx.service" ];
-    };
-  };
 
   swapDevices = [ {
     device = "/var/lib/swapfile";
