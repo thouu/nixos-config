@@ -53,7 +53,7 @@
 
   security.acme =
     let
-      acmeDomains = [
+      acme_domains = [
         "homarr.thou.sh"
         "pihole.thou.sh"
         "netalertx.thou.sh"
@@ -65,7 +65,7 @@
     {
       acceptTerms = true;
       defaults.email = "nothou@proton.me";
-      certs = lib.genAttrs acmeDomains (_: {
+      certs = lib.genAttrs acme_domains (_: {
         dnsProvider = "cloudflare";
         environmentFile = config.sops.secrets.acme_cloudflare_env.path;
         reloadServices = [ "docker-nginx.service" ];
