@@ -20,7 +20,7 @@
       "--network=homelab"
     ];
     ports = [
-      "100.126.141.19:5432:5432"
+      "100.126.231.177:5432:5432"
     ];
     volumes = [
       "/home/lcd/containers/postgres/postgres-data:/var/lib/postgresql"
