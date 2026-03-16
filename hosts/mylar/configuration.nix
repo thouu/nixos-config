@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -72,6 +72,24 @@
       reloadServices = [ "docker-nginx.service" ];
     };
   };
+
+  security.acme =
+    let
+      acmeDomains = [
+        "thou.sh"
+        "swagc.at"
+        "ai.thou.sh"
+      ];
+    in
+    {
+      acceptTerms = true;
+      defaults.email = "nothou@proton.me";
+      certs = lib.genAttrs acmeDomains (_: {
+        dnsProvider = "cloudflare";
+        credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+        reloadServices = [ "docker-nginx.service" ];
+      });
+    };
 
   swapDevices = [ {
     device = "/var/lib/swapfile";
