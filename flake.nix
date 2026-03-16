@@ -1,4 +1,4 @@
-# this is partly stolen from this video at 1:01 https://youtu.be/rEovNpg7J0M?si=7FkCOZOj3apLA0Xd
+# thank you vimjoyer https://youtu.be/rEovNpg7J0M
 
 { description = "nixos multi-host system (tweed + mylar)";
   inputs = {

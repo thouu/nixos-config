@@ -22,16 +22,13 @@
     pkgs.opencode
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+  # for future dotfile management
   home.file = {
 
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
     EDITOR = "vim";
-    # Use this AWS profile by default so aws CLI works without prompts
     AWS_PROFILE = "censored";
   };
 
