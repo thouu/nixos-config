@@ -99,7 +99,7 @@
       PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
       export OPENAI_API_KEY="$(cat ${config.sops.secrets.openai_api_key.path})"
       export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
-      export AWS_PROFILE = "$(cat ${config.sops.secrets.aws_profile.path})"
+      export AWS_PROFILE="$(cat ${config.sops.secrets.aws_profile.path})"
     '';
     shellAliases = {
       ls = "eza -al --icons --color=always --group-directories-first";
