@@ -52,8 +52,6 @@
         "pihole.thou.sh"
         "netalertx.thou.sh"
         "qbt.thou.sh"
-        # adding ai.thou.sh for split horizon DNS so it can use HTTPS on the home network
-        "ai.thou.sh"
       ];
     in
     {
