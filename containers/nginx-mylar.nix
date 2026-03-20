@@ -31,7 +31,7 @@ let
 
       upstream openwebui {
         server ${tweed_netbird_ip}:52320;
-        server openwebui:52321 backup;
+        server host.docker.internal:52321 backup;
       }
 
       server {
@@ -142,6 +142,9 @@ in
 
   virtualisation.oci-containers.containers.nginx = {
     image = "nginx";
+    extraOptions = [
+      "--add-host=host.docker.internal:host-gateway"
+    ];
     ports = [
       "80:80/tcp"
       "443:443/tcp"
