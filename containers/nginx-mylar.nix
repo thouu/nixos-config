@@ -31,7 +31,7 @@ let
 
       upstream openwebui {
         server ${tweed_netbird_ip}:52320;
-        server 127.0.0.1:52321 backup;
+        server openwebui:52321 backup;
       }
 
       server {
