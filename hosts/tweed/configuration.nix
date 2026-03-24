@@ -13,7 +13,8 @@
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
-    ../../containers/openwebui.nix
+    # turning this off until i get network switch
+    #../../containers/openwebui.nix
     ../../containers/gluetun.nix
     ../../containers/qbittorrent.nix
   ];
