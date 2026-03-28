@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  is_mylar = config.networking.hostName == "mylar";
+  netbird_listen_port = if is_mylar then "51821" else "51820";
+
+in
 {
   # netbird
   sops.secrets.netbird_setup_key = {
@@ -26,6 +31,7 @@
       --allow-server-ssh \
       --enable-ssh-local-port-forwarding \
       --enable-ssh-remote-port-forwarding \
+      --listen-port ${netbird_listen_port}
     '';
   };
 }
