@@ -13,7 +13,7 @@
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
-    ../../containers/openwebui.nix
+    #../../containers/openwebui.nix
     ../../containers/gluetun.nix
     ../../containers/qbittorrent.nix
   ];
