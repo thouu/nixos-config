@@ -65,19 +65,19 @@ let
         }
       }
 
-      server {
-        listen 443 ssl;
-        server_name ai.thou.sh;
-
-        ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
-        ssl_certificate_key /etc/ssl/acme/ai.thou.sh/key.pem;
-
-        location / {
-          proxy_pass http://openwebui:52320;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-        }
-      }
+      # server {
+      #   listen 443 ssl;
+      #   server_name ai.thou.sh;
+      #
+      #   ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
+      #   ssl_certificate_key /etc/ssl/acme/ai.thou.sh/key.pem;
+      #
+      #   location / {
+      #     proxy_pass http://openwebui:52320;
+      #     proxy_set_header Upgrade $http_upgrade;
+      #     proxy_set_header Connection "upgrade";
+      #   }
+      # }
 
       server {
         listen 443 ssl;
