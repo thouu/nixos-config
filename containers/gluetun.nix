@@ -38,6 +38,7 @@
       VPN_SERVICE_PROVIDER = "airvpn";
       VPN_TYPE = "wireguard";
       WIREGUARD_ADDRESSES = "10.183.80.88/32";
+      FIREWALL_VPN_INPUT_PORTS = "57964";
       TZ = "America/Los_Angeles";
       UPDATER_PERIOD = "24h";
     };
