@@ -69,20 +69,20 @@
     };
   };
 
-  systemd.services.homelab-docker-network = {
-    description = "make homelab docker network";
-    after = [ "docker.service" ];
-    wants = [ "docker.service" ];
-    before = [ "docker-homarr.service" "docker-nginx.service" ];
-    requiredBy = [ "docker-homarr.service" "docker-nginx.service" ];
+  systemd.services.homelab-podman-network = {
+    description = "make homelab podman network";
+    after = [ "podman.service" ];
+    wants = [ "podman.service" ];
+    before = [ "podman-homarr.service" "podman-nginx.service" ];
+    requiredBy = [ "podman-homarr.service" "podman-nginx.service" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
-    path = [ pkgs.docker ];
+    path = [ pkgs.podman ];
     script = ''
-      if ! docker network inspect homelab >/dev/null 2>&1; then
-        docker network create homelab >/dev/null
+      if ! podman network inspect homelab >/dev/null 2>&1; then
+        podman network create homelab >/dev/null
       fi
     '';
   };
