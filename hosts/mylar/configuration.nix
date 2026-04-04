@@ -62,7 +62,7 @@
       certs = lib.genAttrs acme_domains (_: {
         dnsProvider = "cloudflare";
         credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
-        reloadServices = [ "docker-nginx.service" ];
+        reloadServices = [ "podman-nginx.service" ];
       });
     };
 
