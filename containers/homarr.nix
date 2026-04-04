@@ -23,7 +23,7 @@
       "7575:7575"
     ];
     volumes = [
-      "/var/run/docker.sock:/var/run/docker.sock"
+      "/run/user/1000/podman/podman.sock:/var/run/docker.sock"
       "/home/lcd/containers/homarr/appdata:/appdata"
     ];
     environmentFiles = [
