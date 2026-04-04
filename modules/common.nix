@@ -44,7 +44,11 @@
   programs.zsh.enable = true;
 
   networking.networkmanager.enable = true;
-  virtualisation.oci-containers.backend = "docker";
+  virtualisation.oci-containers.backend = "podman";
+
+  # this needs to be added so docker tools can find podman equivalent
+  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.dockerSocket.enable = true;
 
   systemd.timers."site-pull" = {
     wantedBy = [ "timers.target" ];
