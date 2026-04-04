@@ -27,6 +27,16 @@
     variant = "";
   };
 
+  # im adding this because pihole wont work on podman otherwise
+  # it's also recommended according to pihole docs
+  # this might stop working come 26.05, because they're moving away from the "extraConfig" syntax
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNSStubListener=no
+    '';
+  };
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
