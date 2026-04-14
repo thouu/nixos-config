@@ -22,11 +22,6 @@
 
   networking.firewall.allowedTCPPorts = [ 20211 20214 ];
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
