@@ -40,8 +40,7 @@ let
         ssl_certificate /etc/ssl/acme/ai.thou.sh/fullchain.pem;
         ssl_certificate_key /etc/ssl/acme/ai.thou.sh/key.pem;
 
-        # rate limiting
-        limit_req zone=general burst=20 nodelay;
+        client_max_body_size 100M;
 
         location / {
           proxy_pass http://openwebui;
@@ -51,11 +50,12 @@ let
           proxy_set_header X-Forwarded-Host $host;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection "upgrade";
+          proxy_request_buffering off;
 
           # failover
           proxy_connect_timeout 5s;
-          proxy_read_timeout 60s;
-          proxy_send_timeout 60s;
+          proxy_read_timeout 300s;
+          proxy_send_timeout 300s;
         }
       }
 
