@@ -2,12 +2,12 @@
 
 { description = "nixos multi-host system (tweed + mylar)";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -17,7 +17,7 @@
     unstableOverlay = final: prev:
       let
         pkgsUnstable = import nixpkgs-unstable {
-          system = final.system;
+          system = final.stdenv.hostPlatform.system;
           config.allowUnfree = true;
         };
         unstablePackages = [
@@ -28,14 +28,14 @@
         # i have to add netbird here because ssh isn't enabled otherwise
         # netbird on nixpkgs-unstable is >1yr old somehow
         netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: {
-          version = "0.67.1";
+          version = "0.73.2";
           src = prev.fetchFromGitHub {
             owner = "netbirdio";
             repo = "netbird";
-            rev = "v0.67.1";
-            hash = "sha256-9jqT9cA6aJIZhrX9eJMKhFpPB8HVpkuKvL9plHAyHWo=";
+            rev = "v0.73.2";
+            hash = "sha256-cb8yUQWK6sjf947RuQTIhoHNxO9BrPbpwCQCjCyNGwg=";
           };
-          vendorHash = "sha256-9PvxL7nTbSLnsl1zgLQnh0hiFJLBVNvfxl49xfHXRqk=";
+          vendorHash = "sha256-qa++ONGrFsKJTK7R6Q/9FsMfptKNK9bza32nFKosDxY=";
         });
       in
       (builtins.listToAttrs (map (name: {

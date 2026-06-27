@@ -61,7 +61,7 @@
       defaults.email = "nothou@proton.me";
       certs = lib.genAttrs acme_domains (_: {
         dnsProvider = "cloudflare";
-        credentialsFile = config.sops.secrets.acme_cloudflare_env.path;
+        environmentFile = config.sops.secrets.acme_cloudflare_env.path;
         reloadServices = [ "docker-nginx.service" ];
       });
     };
