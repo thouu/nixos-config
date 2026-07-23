@@ -127,7 +127,8 @@ in
   environment.etc."nginx-tweed/nginx.conf".text = nginxConf;
 
   virtualisation.oci-containers.containers.nginx = {
-    image = "nginx";
+    image = "nginx:1.31.3-trixie";
+    pull = "always";
     dependsOn = [ "homarr" ];
     extraOptions = [
       "--network=homelab"

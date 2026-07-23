@@ -28,14 +28,19 @@
         # i have to add netbird here because ssh isn't enabled otherwise
         # netbird on nixpkgs-unstable is >1yr old somehow
         netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: { # inside of pkgsUnstable is a thing called netbird, inside of netbird it uses a build system. that build system allows me to use overrideAttrs. it's a little counter-intuitive, because you'd expect "overrideAttrs" being after "netbird" means that there's something inside of "netbird" called "overrideAttrs", and, there kind of is, technically. but it's two more layers down inside of customisation.nix, and that's what allows you to do the following
-          version = "0.73.2"; # this is used in its name in the nix store, as opposed to the following "rev" which is for git
+          version = "0.75.0"; # this is used in its name in the nix store, as opposed to the following "rev" which is for git
           src = prev.fetchFromGitHub { # uses the fetchFromGitHub function from prev
             owner = "netbirdio";
             repo = "netbird";
-            rev = "v0.73.2";
-            hash = "sha256-cb8yUQWK6sjf947RuQTIhoHNxO9BrPbpwCQCjCyNGwg=";
+            rev = "v0.75.0";
+            hash = "sha256-1nFpeOWkWZIajjQU1jlSjQoxq+lyvR+rlsAxSV0vJZc=";
           };
-          vendorHash = "sha256-qa++ONGrFsKJTK7R6Q/9FsMfptKNK9bza32nFKosDxY=";
+          postPatch = ''
+            substituteInPlace client/cmd/root.go \
+              --replace-fail 'unix:///var/run/netbird.sock' 'unix:///var/run/netbird/sock'
+          '';
+          proxyVendor = true;
+          vendorHash = "sha256-KVGCV89qGHrg2GQVw6MnftQswbdihcqozptjf5vs5BA=";
         });
       in
       (builtins.listToAttrs (map (name: { # runs builtins.listToAttrs on what's derived from running the following function onto unstablePackages
