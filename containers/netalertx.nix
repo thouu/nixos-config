@@ -5,7 +5,7 @@
   ];
 
   virtualisation.oci-containers.containers.netalertx = {
-    image = "ghcr.io/netalertx/netalertx:v26.7.1";
+    image = "ghcr.io/netalertx/netalertx:26.7.1";
     pull = "always";
     extraOptions = [
       "--network=host"
