@@ -14,22 +14,22 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, sops-nix, home-manager, ... }@inputs:
 
   let
-    unstableOverlay = final: prev:
-      let
-        pkgsUnstable = import nixpkgs-unstable {
-          system = final.stdenv.hostPlatform.system;
-          config.allowUnfree = true;
-        };
-        unstablePackages = [
+    unstableOverlay = final: prev: # creating a function called unstableOverlay that takes `final` & `prev` (which, btw, if the only other place unstableOverlay is called is after nixpkgs.overlays, what is being passed as final & prev?)
+      let # defining variable section
+        pkgsUnstable = import nixpkgs-unstable { # creating an attribute set called pkgsUnstable that imports nixpkgs-unstable
+          system = final.stdenv.hostPlatform.system; # making system equal final.stdenv.hostPlatform.system inside of the new attribute set
+          config.allowUnfree = true; # allowing unfree packages inside of the new attribute set
+        }; # now there's a thing called pkgsUnstable which is a modified version of nixpkgs-unstable with system = final.stdenv.hostPlatform.system and config.allowUnfree = true
+        unstablePackages = [ # just creating a list called unstablePackages
           "codex"
           "claude-code"
           "opencode"
         ];
         # i have to add netbird here because ssh isn't enabled otherwise
         # netbird on nixpkgs-unstable is >1yr old somehow
-        netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: {
-          version = "0.73.2";
-          src = prev.fetchFromGitHub {
+        netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: { # inside of pkgsUnstable is a thing called netbird, inside of netbird it uses a build system. that build system allows me to use overrideAttrs. it's a little counter-intuitive, because you'd expect "overrideAttrs" being after "netbird" means that there's something inside of "netbird" called "overrideAttrs", and, there kind of is, technically. but it's two more layers down inside of customisation.nix, and that's what allows you to do the following
+          version = "0.73.2"; # this is used in its name in the nix store, as opposed to the following "rev" which is for git
+          src = prev.fetchFromGitHub { # uses the fetchFromGitHub function from prev
             owner = "netbirdio";
             repo = "netbird";
             rev = "v0.73.2";
@@ -38,11 +38,11 @@
           vendorHash = "sha256-qa++ONGrFsKJTK7R6Q/9FsMfptKNK9bza32nFKosDxY=";
         });
       in
-      (builtins.listToAttrs (map (name: {
-        inherit name;
-        value = pkgsUnstable.${name};
-      }) unstablePackages)) // {
-        netbird = netbirdOverride;
+      (builtins.listToAttrs (map (name: { # runs builtins.listToAttrs on what's derived from running the following function onto unstablePackages
+        inherit name; # name = name, basically "rec" on attribute sets for functions instead, makes the "name" key in the name/value pair that listToAttrs requires equal to whatever's passed to "map"
+        value = pkgsUnstable.${name}; # value = pkgsUnstable.name, easy to comprehend. the ${} makes it so it's referring to the "name" defined inside of this function, instead of something called "name" inside of pkgsUnstable
+      }) unstablePackages)) // { # finally the attribute set the function defined above is being applied to
+        netbird = netbirdOverride; # makes the "netbird" package equal to "netbirdOverride" defined above
       };
 
     mkHost = hostname: system: nixpkgs.lib.nixosSystem {
