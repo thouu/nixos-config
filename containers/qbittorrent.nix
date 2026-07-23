@@ -7,7 +7,8 @@
   ];
 
   virtualisation.oci-containers.containers.qbittorrent = {
-    image = "linuxserver/qbittorrent";
+    image = "linuxserver/qbittorrent:5.2.3";
+    pull = "always";
     extraOptions = [
       "--network=container:gluetun"
     ];
