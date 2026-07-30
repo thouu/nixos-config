@@ -15,7 +15,8 @@
   ];
 
   virtualisation.oci-containers.containers.homarr = {
-    image = "ghcr.io/homarr-labs/homarr:latest";
+    image = "ghcr.io/homarr-labs/homarr:v1.71.0";
+    pull = "always";
     extraOptions = [
       "--network=homelab"
     ];

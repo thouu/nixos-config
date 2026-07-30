@@ -22,19 +22,10 @@
 
   networking.firewall.allowedTCPPorts = [ 20211 20214 ];
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # im adding this because pihole wont work on podman otherwise
-  # it's also recommended according to pihole docs
-  # this might stop working come 26.05, because they're moving away from the "extraConfig" syntax
+  # pihole wont bind to port 53 otherwise
   services.resolved = {
     enable = true;
-    extraConfig = ''
-      DNSStubListener=no
-    '';
+    settings.Resolve.DNSStubListener = "no";
   };
 
   home-manager = {
