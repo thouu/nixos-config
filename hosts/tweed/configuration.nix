@@ -7,9 +7,9 @@
     ../../modules/common.nix
     ../../modules/netbird.nix
     ../../modules/wireguard-tweed.nix
+    ../../modules/pihole.nix
 
     # containers
-    ../../containers/pihole.nix
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
