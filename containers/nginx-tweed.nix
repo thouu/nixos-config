@@ -42,7 +42,7 @@ let
         ssl_certificate_key /etc/ssl/acme/pihole.thou.sh/key.pem;
 
         location / {
-          proxy_pass http://pihole:80;
+          proxy_pass http://10.0.0.115:8053;
         }
       }
 
