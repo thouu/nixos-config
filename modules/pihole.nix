@@ -44,7 +44,7 @@ in
         database.maxDBdays = 365;
         database.network.expire = 90;
         webserver = {
-          port = 8053;
+          port = "8053";
           interface.theme = "default-darker";
           api.pwhash = config.sops.placeholder.pihole_password_hash;
         };
