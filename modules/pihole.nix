@@ -1,4 +1,4 @@
-{lib, ...}:
+{config, lib, ...}:
 
 let
   blocklists = {
@@ -12,9 +12,12 @@ let
 
 in
 {
-  sops.secrets.pihole_env = {
-    sopsFile = ../home/secrets/secrets.yaml;
+  sops.defaultSopsFile = ../home/secrets/secrets.yaml;
+
+  sops.secrets = {
+    pihole_password_hash = {};
   };
+
   services = {
     pihole-ftl = {
       enable = true;
@@ -43,6 +46,7 @@ in
         webserver = {
           port = 8053;
           interface.theme = "default-darker";
+          api.pwhash = config.sops.placeholder.pihole_password_hash;
         };
       };
     };
