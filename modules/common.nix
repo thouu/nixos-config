@@ -81,8 +81,8 @@
     };
     path = [ pkgs.podman ];
     script = ''
-      if ! podman network inspect homelab >/dev/null 2>&1; then
-        podman network create homelab >/dev/null
+      if ! podman network exists homelab; then
+        podman network create --dns 100.126.102.20 homelab >/dev/null
       fi
     '';
   };

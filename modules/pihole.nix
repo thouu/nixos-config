@@ -4,7 +4,7 @@ let
   blocklists = {
     "Hagezi MultiULTIMATE" = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/ultimate.txt";
     "Hagezi MultiLIGHT" = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/light.txt";
-    "Social Media" = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists/main/adblock/social.txt";
+    "Social Media" = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/social.txt";
     "Mini Hagezi Threat Intelligence Feed" = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.mini.txt";
     "Medium Hagezi Threat Intelligence Feed" = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.medium.txt";
     "Domains with 7-day registration" = "https://raw.githubusercontent.com/hagezi/nrd/main/adblock/dga7.txt";
@@ -39,8 +39,13 @@ in
             "10.0.0.115 netalertx.thou.sh"
             "10.0.0.115 qbt.thou.sh"
           ];
-          listeningMode = "ALL";
+          listeningMode = "NONE";
         };
+        misc.dnsmasq_lines = [
+          "interface=ens18"
+          "interface=wt0"
+          "bind-dynamic"
+        ];
         database.maxDBdays = 365;
         database.network.expire = 90;
         webserver = {
