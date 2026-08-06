@@ -15,7 +15,7 @@ in
   sops.defaultSopsFile = ../home/secrets/secrets.yaml;
 
   sops.secrets = {
-    pihole_password_hash = {};
+    pihole_password = {};
   };
 
   sops.templates."pihole.env" = {
@@ -60,7 +60,6 @@ in
         webserver = {
           port = "8053";
           interface.theme = "default-darker";
-          api.pwhash = config.sops.placeholder.pihole_password_hash;
         };
       };
     };
