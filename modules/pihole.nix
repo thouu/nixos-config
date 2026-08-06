@@ -18,6 +18,15 @@ in
     pihole_password_hash = {};
   };
 
+  sops.templates."pihole.env" = {
+    content = ''
+      FTLCONF_webserver_api_password=${config.sops.placeholder.pihole_password}
+    '';
+    restartUnits = [ "pihole-ftl.service" ];
+  };
+
+  systemd.services.pihole-ftl.serviceConfig.EnvironmentFile = config.sops.templates."pihole.env".path;
+
   services = {
     pihole-ftl = {
       enable = true;
