@@ -22,12 +22,6 @@
 
   networking.firewall.allowedTCPPorts = [ 20211 20214 ];
 
-  # pihole wont bind to port 53 otherwise
-  services.resolved = {
-    enable = true;
-    settings.Resolve.DNSStubListener = "no";
-  };
-
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
