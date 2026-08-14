@@ -23,7 +23,7 @@ in
 
   virtualisation.oci-containers.containers.openwebui = {
     image = "ghcr.io/open-webui/open-webui:v0.10.2";
-    pull = "always";
+    pull = "missing";
     extraOptions = [ "--network=homelab" ];
     ports = [ "${host_port}:52320" ];
     environmentFiles = [

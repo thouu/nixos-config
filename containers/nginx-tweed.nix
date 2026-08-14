@@ -128,7 +128,7 @@ in
 
   virtualisation.oci-containers.containers.nginx = {
     image = "nginx:1.31.3-trixie";
-    pull = "always";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
     ];
