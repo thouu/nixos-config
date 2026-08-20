@@ -15,8 +15,8 @@
   ];
 
   virtualisation.oci-containers.containers.homarr = {
-    image = "ghcr.io/homarr-labs/homarr:v1.71.0";
-    pull = "always";
+    image = "ghcr.io/homarr-labs/homarr:v1.75.0";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
     ];
@@ -24,7 +24,7 @@
       "7575:7575"
     ];
     volumes = [
-      "/var/run/docker.sock:/var/run/docker.sock"
+      "/run/podman/podman.sock:/var/run/docker.sock"
       "/home/lcd/containers/homarr/appdata:/appdata"
     ];
     environmentFiles = [

@@ -7,9 +7,9 @@
     ../../modules/common.nix
     ../../modules/netbird.nix
     ../../modules/wireguard-tweed.nix
+    ../../modules/pihole.nix
 
     # containers
-    ../../containers/pihole.nix
     ../../containers/homarr.nix
     ../../containers/nginx-tweed.nix
     ../../containers/netalertx.nix
@@ -55,7 +55,7 @@
       certs = lib.genAttrs acme_domains (_: {
         dnsProvider = "cloudflare";
         environmentFile = config.sops.secrets.acme_cloudflare_env.path;
-        reloadServices = [ "docker-nginx.service" ];
+        reloadServices = [ "podman-nginx.service" ];
       });
     };
 

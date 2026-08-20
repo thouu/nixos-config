@@ -42,7 +42,7 @@ let
         ssl_certificate_key /etc/ssl/acme/pihole.thou.sh/key.pem;
 
         location / {
-          proxy_pass http://pihole:80;
+          proxy_pass http://10.0.0.115:8053;
         }
       }
 
@@ -127,9 +127,8 @@ in
   environment.etc."nginx-tweed/nginx.conf".text = nginxConf;
 
   virtualisation.oci-containers.containers.nginx = {
-    image = "nginx:1.31.3-trixie";
-    pull = "always";
-    dependsOn = [ "homarr" ];
+    image = "nginx:1.31.4-trixie";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
     ];

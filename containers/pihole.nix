@@ -11,7 +11,7 @@
 
   virtualisation.oci-containers.containers.pihole = {
     image = "pihole/pihole:2026.07.2";
-    pull = "always";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
     ];

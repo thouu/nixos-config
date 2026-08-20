@@ -17,8 +17,8 @@
   ];
 
   virtualisation.oci-containers.containers.gluetun = {
-    image = "qmcgaw/gluetun:v3.41.1";
-    pull = "always";
+    image = "qmcgaw/gluetun:v3.41.3";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
       "--cap-add=NET_ADMIN"
@@ -29,7 +29,7 @@
       "57964:57964"
       "57964:57964/udp"
     ];
-    volumes = [
+    volumes = [this seems like good practice
       "/home/lcd/containers/gluetun:/gluetun"
     ];
     environmentFiles = [

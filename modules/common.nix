@@ -44,7 +44,11 @@
   programs.zsh.enable = true;
 
   networking.networkmanager.enable = true;
-  virtualisation.oci-containers.backend = "docker";
+  virtualisation.oci-containers.backend = "podman";
+
+  # this needs to be added so docker tools can find podman equivalent
+  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.dockerSocket.enable = true;
 
   systemd.timers."site-pull" = {
     wantedBy = [ "timers.target" ];
@@ -65,20 +69,20 @@
     };
   };
 
-  systemd.services.homelab-docker-network = {
-    description = "make homelab docker network";
-    after = [ "docker.service" ];
-    wants = [ "docker.service" ];
-    before = [ "docker-homarr.service" "docker-nginx.service" ];
-    requiredBy = [ "docker-homarr.service" "docker-nginx.service" ];
+  systemd.services.homelab-podman-network = {
+    description = "make homelab podman network";
+    after = [ "podman.service" ];
+    wants = [ "podman.service" ];
+    before = [ "podman-homarr.service" "podman-nginx.service" ];
+    requiredBy = [ "podman-homarr.service" "podman-nginx.service" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
-    path = [ pkgs.docker ];
+    path = [ pkgs.podman ];
     script = ''
-      if ! docker network inspect homelab >/dev/null 2>&1; then
-        docker network create homelab >/dev/null
+      if ! podman network exists homelab; then
+        podman network create --dns 100.126.102.20 homelab >/dev/null
       fi
     '';
   };

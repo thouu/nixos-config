@@ -141,8 +141,8 @@ in
   environment.etc."nginx-mylar/nginx.conf".text = nginxConf;
 
   virtualisation.oci-containers.containers.nginx = {
-    image = "nginx:1.31.3-trixie";
-    pull = "always";
+    image = "nginx:1.31.4-trixie";
+    pull = "missing";
     extraOptions = [
       "--network=homelab"
     ];
