@@ -5,7 +5,7 @@
   ];
 
   virtualisation.oci-containers.containers.netalertx = {
-    image = "ghcr.io/netalertx/netalertx:26.7.1";
+    image = "ghcr.io/netalertx/netalertx:26.8.5";
     pull = "missing";
     extraOptions = [
       "--network=host"

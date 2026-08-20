@@ -17,7 +17,7 @@
   ];
 
   virtualisation.oci-containers.containers.gluetun = {
-    image = "qmcgaw/gluetun:v3.41.1";
+    image = "qmcgaw/gluetun:v3.41.3";
     pull = "missing";
     extraOptions = [
       "--network=homelab"
