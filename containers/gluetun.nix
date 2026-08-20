@@ -29,7 +29,7 @@
       "57964:57964"
       "57964:57964/udp"
     ];
-    volumes = [this seems like good practice
+    volumes = [
       "/home/lcd/containers/gluetun:/gluetun"
     ];
     environmentFiles = [
