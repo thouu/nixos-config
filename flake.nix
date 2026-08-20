@@ -24,32 +24,13 @@
           "codex"
           "claude-code"
           "opencode"
+          "netbird"
         ];
-        # i have to add netbird here because ssh isn't enabled otherwise
-        # netbird on nixpkgs-unstable is >1yr old somehow
-        netbirdOverride = pkgsUnstable.netbird.overrideAttrs (old: {
-          version = "0.75.0";
-          src = prev.fetchFromGitHub {
-            owner = "netbirdio";
-            repo = "netbird";
-            rev = "v0.75.0";
-            hash = "sha256-1nFpeOWkWZIajjQU1jlSjQoxq+lyvR+rlsAxSV0vJZc=";
-          };
-          # v0.75.0 removed client_ui.go so nixpkgs patch needs to be replaced
-          postPatch = ''
-            substituteInPlace client/cmd/root.go \
-              --replace-fail 'unix:///var/run/netbird.sock' 'unix:///var/run/netbird/sock'
-          '';
-          proxyVendor = true;
-          vendorHash = "sha256-KVGCV89qGHrg2GQVw6MnftQswbdihcqozptjf5vs5BA=";
-        });
       in
-      (builtins.listToAttrs (map (name: {
+      builtins.listToAttrs (map (name: {
         inherit name;
         value = pkgsUnstable.${name};
-      }) unstablePackages)) // {
-        netbird = netbirdOverride;
-      };
+      }) unstablePackages);
 
     mkHost = hostname: system: nixpkgs.lib.nixosSystem {
       inherit system;
